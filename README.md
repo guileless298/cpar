@@ -13,7 +13,7 @@ cpar *.jpg out
 # Whitespace detection controls
 cpar *.jpg out -t 255 -p 0 # Only crop full white from edges of image
 cpar *.jpg out -p 100      # Greedily crop image so no detected whitespace is left
-cpar */jpg out --ey 10     # Remove an additional 10px from detected bottom of image
+cpar *.jpg out --ey 10     # Remove an additional 10px from detected bottom of image
 
 # Blur output and downscale
 cpar *.jpg out -b 1.5 -d 4.0
