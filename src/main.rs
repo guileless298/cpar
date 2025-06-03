@@ -18,30 +18,30 @@ struct CPAR {
     #[clap(short, long, default_value_t = 250)]
     threshold: u8,
     /// Threshold value in x-axis
-    #[clap(long, alias = "xt", conflicts_with = "threshold")]
+    #[clap(long, visible_alias = "xt", conflicts_with = "threshold")]
     x_threshold: Option<u8>,
     /// Threshold value in y-axis
-    #[clap(long, alias = "yt", conflicts_with = "threshold")]
+    #[clap(long, visible_alias = "yt", conflicts_with = "threshold")]
     y_threshold: Option<u8>,
 
     /// Percentage of rows/columns having crossed threshold to consider edge found
     #[clap(short, long, default_value_t = 95, value_parser = clap::value_parser!(u8).range(0..=100))]
     percentile: u8,
     /// Percentile in x-axis
-    #[clap(long, alias = "xp", conflicts_with = "percentile", value_parser = clap::value_parser!(u8).range(0..=100))]
+    #[clap(long, visible_alias = "xp", conflicts_with = "percentile", value_parser = clap::value_parser!(u8).range(0..=100))]
     x_percentile: Option<u8>,
     /// Percentile in y-axis
-    #[clap(long, alias = "yp", conflicts_with = "percentile", value_parser = clap::value_parser!(u8).range(0..=100))]
+    #[clap(long, visible_alias = "yp", conflicts_with = "percentile", value_parser = clap::value_parser!(u8).range(0..=100))]
     y_percentile: Option<u8>,
 
     /// Extra margin to crop beyond found edge in both axes
     #[clap(short, long, default_value_t = 0)]
     extra: u32,
     /// Extra crop in x-axis
-    #[clap(long, alias = "ex", conflicts_with = "extra")]
+    #[clap(long, visible_alias = "ex", conflicts_with = "extra")]
     x_extra: Option<u32>,
     /// Extra crop in y-axis
-    #[clap(long, alias = "ey", conflicts_with = "extra")]
+    #[clap(long, visible_alias = "ey", conflicts_with = "extra")]
     y_extra: Option<u32>,
 
     /// Blur image by sigma
