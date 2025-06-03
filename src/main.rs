@@ -6,6 +6,7 @@ use image::imageops::FilterType;
 
 #[derive(Parser)]
 /// Crop Preserving Aspect Ratio - Crops artwork and restores it to the original aspect ratio
+#[command(arg_required_else_help = true)]
 struct CPAR {
     /// Source file(s) to process
     #[clap(num_args = 1.., required = true)]
