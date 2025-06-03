@@ -5,9 +5,7 @@ use image::{GenericImageView, ImageReader, Pixel};
 use image::imageops::FilterType;
 
 #[derive(Parser)]
-/// Crop Preserving Aspect Ratio
-///
-/// Crops artwork and restores it to the original aspect ratio
+/// Crop Preserving Aspect Ratio - Crops artwork and restores it to the original aspect ratio
 struct CPAR {
     /// Source file(s) to process
     #[clap(num_args = 1.., required = true)]
@@ -15,35 +13,33 @@ struct CPAR {
     /// Output folder to place processed images within
     output: PathBuf,
 
-    /// Threshold value to check whitespace in both axes.
-    /// When a row/column drops below this threshold, identify it as part of the image edge
+    /// Threshold value to identify as whitespace
     #[clap(short, long, default_value_t = 250)]
     threshold: u8,
-    /// Threshold value to check whitespace in the x-axis
+    /// Threshold value in x-axis
     #[clap(long, alias = "xt", conflicts_with = "threshold")]
     x_threshold: Option<u8>,
-    /// Threshold value to check whitespace in the y-axis
+    /// Threshold value in y-axis
     #[clap(long, alias = "yt", conflicts_with = "threshold")]
     y_threshold: Option<u8>,
 
-    /// Percentile to accept border in both axes.
-    /// When X% of the rows/columns have crossed this threshold, crop image to this point
+    /// Percentage of rows/columns having crossed threshold to consider edge found
     #[clap(short, long, default_value_t = 95, value_parser = clap::value_parser!(u8).range(0..=100))]
     percentile: u8,
-    /// Percentile to accept border in x-axis
+    /// Percentile in x-axis
     #[clap(long, alias = "xp", conflicts_with = "percentile", value_parser = clap::value_parser!(u8).range(0..=100))]
     x_percentile: Option<u8>,
-    /// Percentile to accept border in x-axis
+    /// Percentile in y-axis
     #[clap(long, alias = "yp", conflicts_with = "percentile", value_parser = clap::value_parser!(u8).range(0..=100))]
     y_percentile: Option<u8>,
 
-    /// Extra margin to crop beyond threshold in both axes
+    /// Extra margin to crop beyond found edge in both axes
     #[clap(short, long, default_value_t = 0)]
     extra: u32,
-    /// Extra margin to crop beyond threshold in x-axis
+    /// Extra crop in x-axis
     #[clap(long, alias = "ex", conflicts_with = "extra")]
     x_extra: Option<u32>,
-    /// Extra margin to crop beyond threshold in y-axis
+    /// Extra crop in y-axis
     #[clap(long, alias = "ey", conflicts_with = "extra")]
     y_extra: Option<u32>,
 
